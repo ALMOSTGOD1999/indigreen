@@ -1,5 +1,6 @@
 import { Link } from '@inertiajs/react'
 import { Button } from '~/components/website/ui/button'
+import modelBridal from '~/assets/website/model-bridal.jpg'
 
 const HeroSection = () => {
   return (
@@ -7,7 +8,7 @@ const HeroSection = () => {
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
-          src="https://cdn.imgchest.com/files/d9e28768bc87.jpg"
+          src={modelBridal}
           alt="Indigreen Jewellery Collection"
           className="w-full h-full object-cover object-top scale-105"
         />
