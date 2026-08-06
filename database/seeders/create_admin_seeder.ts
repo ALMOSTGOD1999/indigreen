@@ -9,22 +9,22 @@ export default class CreateAdminSeeder extends BaseSeeder {
     if (existingAdmin) {
       console.log(`Admin already exists: ID ${existingAdmin.id}, Name: ${existingAdmin.name}`)
       // Update password anyway
-      existingAdmin.password = 'Indigreen4321'
+      existingAdmin.password = 'Indi@6969'
       await existingAdmin.save()
-      console.log('✅ Admin password updated to Indigreen4321')
+      console.log('✅ Admin password updated to Indi@6969')
       return
     }
 
     // Create a new admin user
-    const admin = await User.create({
+    await User.create({
       id: 1,
       name: 'Admin',
       email: 'admin@indigreenjewellery.com',
       phone: '0000000000',
-      password: 'Indigreen4321',
+      password: 'Indi@6969',
       role: UserRoleEnum.ADMIN,
       gender: 'male' as any,
     })
-    console.log(`✅ Admin user created with ID 1 and password Indigreen4321`)
+    console.log(`✅ Admin user created with ID 1 and password Indi@6969`)
   }
 }
