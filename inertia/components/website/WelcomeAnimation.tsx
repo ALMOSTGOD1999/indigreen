@@ -16,19 +16,8 @@ const letterConfig = [
   { color: '#2dd4bf', glow: 'rgba(45,212,191,0.5)', startX: 80, startY: -130, rotation: -15 }, // N - top-right-center
 ]
 
-// Coin positions for the burst phase
+// Coin count for the burst phase
 const COIN_COUNT = 24
-const coinBursts = Array.from({ length: COIN_COUNT }, (_, i) => {
-  const angle = (i / COIN_COUNT) * Math.PI * 2 + (Math.random() - 0.5) * 0.5
-  const distance = 80 + Math.random() * 160
-  return {
-    x: Math.cos(angle) * distance,
-    y: Math.sin(angle) * distance,
-    rotation: Math.random() * 720 - 360,
-    delay: Math.random() * 0.45,
-    size: 16 + Math.random() * 12,
-  }
-})
 
 export default function WelcomeAnimation() {
   const [show, setShow] = useState(true)
@@ -55,6 +44,29 @@ export default function WelcomeAnimation() {
       return offset
     })
   }, [])
+
+  // Scale the word and the coin burst down on small screens so nothing
+  // overflows the viewport. Desktop (>= 700px) stays at 1 = unchanged.
+  const smallScreenScale = useMemo(() => {
+    if (typeof window === 'undefined') return 1
+    return Math.min(1, window.innerWidth / 700)
+  }, [])
+
+  // Coin positions for the burst phase — distances are scaled with the
+  // viewport so coins stay on screen on mobile.
+  const coinBursts = useMemo(() => {
+    return Array.from({ length: COIN_COUNT }, (_, i) => {
+      const angle = (i / COIN_COUNT) * Math.PI * 2 + (Math.random() - 0.5) * 0.5
+      const distance = (80 + Math.random() * 160) * smallScreenScale
+      return {
+        x: Math.cos(angle) * distance,
+        y: Math.sin(angle) * distance,
+        rotation: Math.random() * 720 - 360,
+        delay: Math.random() * 0.45,
+        size: 16 + Math.random() * 12,
+      }
+    })
+  }, [smallScreenScale])
 
   if (!show) return null
 
@@ -103,7 +115,10 @@ export default function WelcomeAnimation() {
 
       <div className="relative flex flex-col items-center justify-center">
         {/* === Letters flying in and forming === */}
-        <div className="relative flex items-center justify-center" style={{ minHeight: '6rem' }}>
+        <div
+          className="relative flex items-center justify-center"
+          style={{ minHeight: '6rem', transform: `scale(${smallScreenScale})` }}
+        >
           {LETTERS.map((letter, i) => {
             const cfg = letterConfig[i]
             const offset = letterOffsets[i]
