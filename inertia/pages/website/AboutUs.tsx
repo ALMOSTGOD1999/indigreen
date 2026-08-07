@@ -49,7 +49,7 @@ const AboutUs = () => {
             <span className="text-emerald font-semibold tracking-[0.2em] text-xs uppercase">
               Our Story
             </span>
-            <h1 className="text-4xl md:text-5xl font-heading font-bold mt-3 mb-6 text-foreground">
+            <h1 className="text-4xl md:text-5xl font-heading font-bold mt-3 mb-6 text-foreground dark:text-slate-900">
               Crafting Dreams Since 1985
             </h1>
             <p className="text-xl text-muted-foreground leading-relaxed">
