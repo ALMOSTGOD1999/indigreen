@@ -19,7 +19,11 @@ export function SignupForm({
 
   // All users use the same PJ prefix
   const prefix = 'PJ'
-  const initialRef = refCode ? `${prefix}${refCode}` : qs.ref ? `${prefix}${qs.ref}` : ''
+  // The invite link already carries the PJ prefix (e.g. ?ref=PJ1234567),
+  // so strip any existing alpha prefix before re-adding it to avoid a
+  // double prefix like PJPJ1234567 which the server cannot resolve.
+  const inviteRef = refCode || qs.ref || ''
+  const initialRef = inviteRef ? `${prefix}${inviteRef.replace(/^[a-zA-Z]+/i, '')}` : ''
 
   const form = useForm({
     referralCode: initialRef,
