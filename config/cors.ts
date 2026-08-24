@@ -5,7 +5,7 @@ const corsConfig = defineConfig({
   origin: true,
   methods: ['GET', 'HEAD', 'POST', 'PUT', 'DELETE'],
   headers: true,
-  exposeHeaders: [],
+  exposeHeaders: ['X-Inertia'],
   credentials: true,
   maxAge: 90,
 })
