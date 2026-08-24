@@ -40,7 +40,7 @@ export default class DiagDates extends BaseCommand {
       const activeDaysUtc = daysInMonth - startDayUtc + 1
 
       this.logger.info(
-        `inv#${investment.id} PJ${String(investment.userId).padStart(6, '0')} started=${investment.startedAt.toString()} | ` +
+        `inv#${investment.id} IG${String(investment.userId).padStart(6, '0')} started=${investment.startedAt.toString()} | ` +
           `Lucid zone=${investment.startedAt.zoneName} day=${investment.startedAt.day} | ` +
           `current: startDay=${startDayCurrent} activeDays=${activeDaysCurrent} | ` +
           `stored-date: startDay=${startDayUtc} activeDays=${activeDaysUtc} | ` +

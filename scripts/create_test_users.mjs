@@ -58,12 +58,12 @@ const existing = await db
 results.push('EXISTING USERS:')
 for (const u of existing) {
   results.push(
-    '  PJ' +
+    '  IG' +
       u.id +
       ' ' +
       u.name +
       ' parent:' +
-      (u.parent_id ? 'PJ' + u.parent_id : 'none') +
+      (u.parent_id ? 'IG' + u.parent_id : 'none') +
       ' ' +
       u.status
   )
@@ -75,7 +75,7 @@ results.push('CREATING USERS:')
 for (const u of users) {
   const existingCheck = await db.from('users').where('id', u.id).first()
   if (existingCheck) {
-    results.push('  PJ' + u.id + ' ' + u.name + ' ALREADY EXISTS - skipping')
+    results.push('  IG' + u.id + ' ' + u.name + ' ALREADY EXISTS - skipping')
     continue
   }
   await db.table('users').insert({
@@ -98,18 +98,18 @@ for (const u of users) {
     working_wallet: 0,
     total_invested: 0,
   })
-  results.push('  Created PJ' + u.id + ' ' + u.name + ' (parent: PJ' + u.parentId + ')')
+  results.push('  Created IG' + u.id + ' ' + u.name + ' (parent: IG' + u.parentId + ')')
 }
 
-// Step 3: Move PJ248892 to be child of Test id new 4
+// Step 3: Move IG248892 to be child of Test id new 4
 const current248892 = await db.from('users').where('id', 248892).select('parent_id').first()
 results.push('')
-results.push('MOVING PJ248892:')
+results.push('MOVING IG248892:')
 results.push(
-  '  Current parent: ' + (current248892?.parent_id ? 'PJ' + current248892.parent_id : 'none')
+  '  Current parent: ' + (current248892?.parent_id ? 'IG' + current248892.parent_id : 'none')
 )
 await db.from('users').where('id', 248892).update({ parent_id: 997864 })
-results.push('  New parent: PJ997864 (Test id new 4)')
+results.push('  New parent: IG997864 (Test id new 4)')
 
 // Step 4: Verify
 results.push('')
@@ -121,12 +121,12 @@ const chain = await db
   .orderBy('id')
 for (const u of chain) {
   results.push(
-    '  PJ' +
+    '  IG' +
       u.id +
       ' ' +
       u.name +
       ' parent:' +
-      (u.parent_id ? 'PJ' + u.parent_id : 'root') +
+      (u.parent_id ? 'IG' + u.parent_id : 'root') +
       ' ' +
       u.status
   )
@@ -134,7 +134,7 @@ for (const u of chain) {
 
 results.push('')
 results.push('DONE! Password for all new users: password')
-results.push('Login: PJ997861 / password, PJ997862 / password, etc.')
+results.push('Login: IG997861 / password, IG997862 / password, etc.')
 
 fs.writeFileSync('scripts/results.txt', results.join('\n') + '\n')
 console.log(results.join('\n'))

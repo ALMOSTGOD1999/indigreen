@@ -43,5 +43,5 @@ export function formatUserId(
 ) {
   // Always pad to 6 digits minimum, don't truncate (e.g. 135 → "000135", 7638545 → "7638545")
   const idStr = String(id).padStart(6, '0')
-  return `PJ${idStr}`
+  return `IG${idStr}`
 }

@@ -6,7 +6,7 @@ import { BaseSchema } from '@adonisjs/lucid/schema'
  * Gold purchases and investments are the same thing. The earlier migration
  * (1790000000003, run 2026-07-10) only created ONE aggregated investment per
  * user, so every purchase made after that date was never converted — e.g.
- * PJ236641's ₹10,00,000 purchase from 2026-07-15 produced no investment and
+ * IG236641's ₹10,00,000 purchase from 2026-07-15 produced no investment and
  * therefore no cashback-wallet payout.
  *
  * This migration creates a per-purchase investment (prorated from the purchase

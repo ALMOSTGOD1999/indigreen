@@ -12,7 +12,7 @@ try {
     .select('id', 'name', 'parent_id', 'status', 'activated_at')
   const lines = rows.map(
     (r) =>
-      `ID: PJ${r.id} | Name: ${r.name} | Parent: ${r.parent_id ? 'PJ' + r.parent_id : 'none'} | Status: ${r.status} | Activated: ${r.activated_at}`
+      `ID: IG${r.id} | Name: ${r.name} | Parent: ${r.parent_id ? 'IG' + r.parent_id : 'none'} | Status: ${r.status} | Activated: ${r.activated_at}`
   )
   fs.writeFileSync('scripts/out.txt', lines.join('\n') + '\n')
 } catch (e) {

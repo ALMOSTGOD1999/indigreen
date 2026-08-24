@@ -20,7 +20,7 @@ export default class CheckWallet extends BaseCommand {
       return
     }
     const u = user.rows[0]
-    this.logger.info(`User: PJ${String(u.id).padStart(6, '0')} — ${u.name}`)
+    this.logger.info(`User: IG${String(u.id).padStart(6, '0')} — ${u.name}`)
     this.logger.info(`Wallet Balance: ₹${u.wallet_balance}`)
     this.logger.info(`Income Wallet: ₹${u.income_wallet}`)
     this.logger.info(`Reward Wallet: ₹${u.reward_wallet}`)

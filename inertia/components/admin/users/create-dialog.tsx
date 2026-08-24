@@ -147,7 +147,7 @@ export function CreateUserDialog({ isOpen, onOpenChange }: CreateUserDialogProps
               <Input
                 id="parentId"
                 type="text"
-                placeholder="PJ123456"
+                placeholder="IG123456"
                 value={data.parentId}
                 onChange={(e) => {
                   setData('parentId', e.target.value)

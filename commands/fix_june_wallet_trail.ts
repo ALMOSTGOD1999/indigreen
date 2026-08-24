@@ -94,7 +94,7 @@ export default class FixJuneWalletTrail extends BaseCommand {
       inserted++
       totalAmount += fix.amount
       this.logger.info(
-        `  → PJ${String(fix.uid).padStart(6, '0')}: added REVERSAL ${fix.wallet} ₹${fix.amount.toFixed(2)}`
+        `  → IG${String(fix.uid).padStart(6, '0')}: added REVERSAL ${fix.wallet} ₹${fix.amount.toFixed(2)}`
       )
     }
 

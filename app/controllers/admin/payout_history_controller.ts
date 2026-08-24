@@ -176,7 +176,7 @@ export default class AdminPayoutHistoryController {
 
       return [
         row.id,
-        `PJ${String(row.user_id).padStart(6, '0')}`,
+        `IG${String(row.user_id).padStart(6, '0')}`,
         escapeCsvField(row.user_name || ''),
         escapeCsvField(row.user_email || ''),
         escapeCsvField(row.user_phone || ''),
@@ -318,7 +318,7 @@ export default class AdminPayoutHistoryController {
       const dateStr = row.created_at
         ? DateTime.fromJSDate(new Date(row.created_at)).toFormat('dd/MM/yy')
         : ''
-      const userId = `PJ${String(row.user_id).padStart(6, '0')}`
+      const userId = `IG${String(row.user_id).padStart(6, '0')}`
       const userName = this.truncate(row.user_name || '—', 22)
       const remark = this.truncate(row.remark || '—', 28)
 

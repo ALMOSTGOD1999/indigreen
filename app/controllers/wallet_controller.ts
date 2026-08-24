@@ -149,7 +149,7 @@ export default class WalletController {
       })
     }
 
-    // Handle formatted IDs (PJ prefix) by stripping the prefix
+    // Handle formatted IDs (IG prefix) by stripping the prefix
     const cleanReceiverId =
       typeof receiverId === 'string' ? receiverId.replace(/^[a-zA-Z]+/i, '') : String(receiverId)
     const parsedReceiverId = Number(cleanReceiverId)
@@ -181,7 +181,7 @@ export default class WalletController {
 
   /**
    * Search for users by ID, name, email, or phone for wallet transfers.
-   * Supports PJ prefixed IDs by stripping the prefix before searching.
+   * Supports IG prefixed IDs by stripping the prefix before searching.
    */
   public async search({ request, auth, response }: HttpContext) {
     const user = auth.user!

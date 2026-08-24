@@ -9,13 +9,13 @@ export default class ExplainWorkingWallet extends BaseCommand {
 
   @args.string({
     required: false,
-    description: 'User ID (e.g. 416427 or PJ416427)',
+    description: 'User ID (e.g. 416427 or IG416427)',
   })
   declare userId: string
 
   async run() {
     const rawInput = (this.userId || '').trim().toUpperCase()
-    const userId = rawInput.replace(/^PJ/i, '')
+    const userId = rawInput.replace(/^IG/i, '')
 
     if (!userId) {
       this.logger.error('Please provide a user ID. Example: node ace explain:working-wallet 416427')
@@ -29,7 +29,7 @@ export default class ExplainWorkingWallet extends BaseCommand {
       uid,
     ])
     if (userRes.rows.length === 0) {
-      this.logger.error(`User PJ${String(uid).padStart(6, '0')} not found`)
+      this.logger.error(`User IG${String(uid).padStart(6, '0')} not found`)
       return
     }
     const user = userRes.rows[0]
@@ -56,7 +56,7 @@ export default class ExplainWorkingWallet extends BaseCommand {
 
     this.logger.info(`══════════════════════════════════════════════════`)
     this.logger.info(`  WORKING WALLET BREAKDOWN`)
-    this.logger.info(`  User: PJ${String(uid).padStart(6, '0')} ${user.name}`)
+    this.logger.info(`  User: IG${String(uid).padStart(6, '0')} ${user.name}`)
     this.logger.info(`  DB Column: ₹${dbValue.toFixed(2)}`)
     this.logger.info(`  Snapshot Expected: ₹${snapshotTotal.toFixed(2)}`)
     this.logger.info(`══════════════════════════════════════════════════`)

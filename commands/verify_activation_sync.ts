@@ -17,14 +17,14 @@ export default class VerifyActivationSync extends BaseCommand {
     for (const u of updates) {
       const dbUser = await db.rawQuery(`SELECT activated_at FROM users WHERE id = ?`, [u.id])
       if (dbUser.rows.length === 0) {
-        this.logger.warning(`PJ${String(u.id).padStart(6, '0')} not found in DB`)
+        this.logger.warning(`IG${String(u.id).padStart(6, '0')} not found in DB`)
         continue
       }
       const dbActivated = dbUser.rows[0].activated_at
       const dbDt = DateTime.fromJSDate(new Date(dbActivated))
       const csvDt = DateTime.fromISO(u.newActivated)
       const match = dbDt.toISODate() === csvDt.toISODate()
-      this.logger.info(`PJ${String(u.id).padStart(6, '0')} ${u.name}: DB=${dbActivated}, CSV=${u.newActivated}, Match=${match}`)
+      this.logger.info(`IG${String(u.id).padStart(6, '0')} ${u.name}: DB=${dbActivated}, CSV=${u.newActivated}, Match=${match}`)
     }
   }
 }

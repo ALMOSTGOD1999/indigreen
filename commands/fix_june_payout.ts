@@ -121,13 +121,13 @@ export default class FixJunePayout extends BaseCommand {
         })
 
         this.logger.warning(
-          `PJ${String(uid).padStart(6, '0')}: OLD=${oldRank?.designation || 'NONE'}(₹${oldSalaryReward}) → NEW=${newRank?.designation || 'NONE'}(₹${newSalaryReward}) | EXCESS=₹${excessSalary}`
+          `IG${String(uid).padStart(6, '0')}: OLD=${oldRank?.designation || 'NONE'}(₹${oldSalaryReward}) → NEW=${newRank?.designation || 'NONE'}(₹${newSalaryReward}) | EXCESS=₹${excessSalary}`
         )
       } else if (oldMatched && newRank) {
         validSalaries++
-        this.logger.info(`PJ${String(uid).padStart(6, '0')}: ${newRank.designation} = VALID`)
+        this.logger.info(`IG${String(uid).padStart(6, '0')}: ${newRank.designation} = VALID`)
       } else {
-        this.logger.info(`PJ${String(uid).padStart(6, '0')}: No qualifying rank = VALID`)
+        this.logger.info(`IG${String(uid).padStart(6, '0')}: No qualifying rank = VALID`)
       }
     }
 
@@ -228,7 +228,7 @@ export default class FixJunePayout extends BaseCommand {
 
       fixedCount++
       this.logger.info(
-        `  → Fixed PJ${String(uid).padStart(6, '0')}: reverted ₹${fix.excessWorking.toLocaleString('en-IN')} working + ₹${fix.excessRepurchase.toLocaleString('en-IN')} repurchase`
+        `  → Fixed IG${String(uid).padStart(6, '0')}: reverted ₹${fix.excessWorking.toLocaleString('en-IN')} working + ₹${fix.excessRepurchase.toLocaleString('en-IN')} repurchase`
       )
     }
 

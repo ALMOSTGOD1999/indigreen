@@ -39,7 +39,7 @@ export default class SyncActivationDates extends BaseCommand {
     const csvMap = new Map<number, { createdAt: string; isActivated: boolean; name: string }>()
     for (const row of rows) {
       const memberCode = row[header.indexOf('member_code')] || ''
-      const match = memberCode.match(/PJ(\d+)/i)
+      const match = memberCode.match(/IG(\d+)/i)
       if (!match) continue
       const userId = Number(match[1])
       const createdAt = row[header.indexOf('created_at')]
@@ -87,7 +87,7 @@ export default class SyncActivationDates extends BaseCommand {
             oldActivated: dbUser.activated_at,
             newActivated: csvData.createdAt,
           })
-          this.logger.info(`Updated PJ${String(userId).padStart(6, '0')} ${csvData.name}: activated_at ${dbUser.activated_at} → ${csvData.createdAt}`)
+          this.logger.info(`Updated IG${String(userId).padStart(6, '0')} ${csvData.name}: activated_at ${dbUser.activated_at} → ${csvData.createdAt}`)
         } else {
           noChange++
         }
@@ -107,7 +107,7 @@ export default class SyncActivationDates extends BaseCommand {
             oldActivated: dbUser.activated_at,
             newActivated: csvData.createdAt,
           })
-          this.logger.info(`Updated PJ${String(userId).padStart(6, '0')} ${csvData.name}: created_at/activated_at → ${csvData.createdAt}`)
+          this.logger.info(`Updated IG${String(userId).padStart(6, '0')} ${csvData.name}: created_at/activated_at → ${csvData.createdAt}`)
         } else {
           noChange++
         }

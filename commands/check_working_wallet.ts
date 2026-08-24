@@ -9,13 +9,13 @@ export default class CheckWorkingWallet extends BaseCommand {
 
   @args.string({
     required: false,
-    description: 'User ID (e.g. 416427 or PJ416427). Leave blank to check all.',
+    description: 'User ID (e.g. 416427 or IG416427). Leave blank to check all.',
   })
   declare userId: string
 
   async run() {
     const rawInput = (this.userId || '').trim().toUpperCase()
-    const userId = rawInput.replace(/^PJ/i, '')
+    const userId = rawInput.replace(/^IG/i, '')
 
     const userFilter = userId
       ? `WHERE id = ${Number(userId)}`
@@ -49,13 +49,13 @@ export default class CheckWorkingWallet extends BaseCommand {
 
       if (Math.abs(diff) > 0.99) {
         mismatchCount++
-        this.logger.warning(`MISMATCH: PJ${String(uid).padStart(6, '0')} ${u.name}`)
+        this.logger.warning(`MISMATCH: IG${String(uid).padStart(6, '0')} ${u.name}`)
         this.logger.warning(`  DB working_wallet: ₹${dbValue.toFixed(2)}`)
         this.logger.warning(`  Snapshot expected: ₹${snapshotTotal.toFixed(2)}`)
         this.logger.warning(`  DIFFERENCE:        ₹${diff.toFixed(2)}`)
         this.logger.warning(`  Status:            ${u.status}`)
       } else {
-        this.logger.info(`OK: PJ${String(uid).padStart(6, '0')} ${u.name} = ₹${dbValue.toFixed(2)}`)
+        this.logger.info(`OK: IG${String(uid).padStart(6, '0')} ${u.name} = ₹${dbValue.toFixed(2)}`)
       }
     }
 

@@ -46,12 +46,12 @@ export default class CreateMissingReversals extends BaseCommand {
 
       if (alreadyExists) {
         this.logger.info(
-          `PJ${String(uid).padStart(6, '0')}: Reversal transactions already exist. Skipping.`
+          `IG${String(uid).padStart(6, '0')}: Reversal transactions already exist. Skipping.`
         )
         continue
       }
 
-      this.logger.info(`PJ${String(uid).padStart(6, '0')}:`)
+      this.logger.info(`IG${String(uid).padStart(6, '0')}:`)
       this.logger.info(`  Excess salary:     ₹${u.excessSalary.toLocaleString('en-IN')}`)
       this.logger.info(`  Working reversal:  ₹${excessWorking.toLocaleString('en-IN')}`)
       this.logger.info(`  Repurchase rev:    ₹${excessRepurchase.toLocaleString('en-IN')}`)

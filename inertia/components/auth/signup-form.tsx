@@ -17,11 +17,11 @@ export function SignupForm({
 }: React.ComponentProps<'form'> & { refCode?: string; leg?: string }) {
   const qs = useSearchParams()
 
-  // All users use the same PJ prefix
-  const prefix = 'PJ'
-  // The invite link already carries the PJ prefix (e.g. ?ref=PJ1234567),
+  // All users use the same IG prefix
+  const prefix = 'IG'
+  // The invite link already carries the IG prefix (e.g. ?ref=IG1234567),
   // so strip any existing alpha prefix before re-adding it to avoid a
-  // double prefix like PJPJ1234567 which the server cannot resolve.
+  // double prefix like IGIG1234567 which the server cannot resolve.
   const inviteRef = refCode || qs.ref || ''
   const initialRef = inviteRef ? `${prefix}${inviteRef.replace(/^[a-zA-Z]+/i, '')}` : ''
 
@@ -83,7 +83,7 @@ export function SignupForm({
               form.setData('referralCode', e.target.value)
               updateUrlRef(e.target.value)
             }}
-            placeholder="PJ1234567"
+            placeholder="IG1234567"
             disabled={!!refCode}
             readOnly={!!refCode}
           />

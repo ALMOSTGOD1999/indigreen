@@ -21,7 +21,7 @@ export default class FindUser extends BaseCommand {
     this.logger.info('\nLast 10 users:')
     all.rows.forEach((r: any) => {
       const padded = String(r.id).padStart(6, '0')
-      this.logger.info(`  ID ${r.id} → PJ${padded} — ${r.name}`)
+      this.logger.info(`  ID ${r.id} → IG${padded} — ${r.name}`)
     })
   }
 }

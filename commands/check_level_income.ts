@@ -41,7 +41,7 @@ export default class CheckLevelIncome extends BaseCommand {
     this.logger.info(`══════════════════════════════════════════════════`)
     this.logger.info(`  Level Income Report — ${monthLabel}`)
     this.logger.info(`──────────────────────────────────────────────────`)
-    this.logger.info(`  User  : PJ${String(user.id).padStart(6, '0')} — ${user.name}`)
+    this.logger.info(`  User  : IG${String(user.id).padStart(6, '0')} — ${user.name}`)
     this.logger.info(`  Role  : ${user.role}`)
     this.logger.info(`  Month : ${monthLabel}`)
     this.logger.info(`══════════════════════════════════════════════════`)
@@ -169,7 +169,7 @@ export default class CheckLevelIncome extends BaseCommand {
       this.logger.info(`  ${descendants.rows.length} descendants:`)
       for (const d of descendants.rows) {
         const paddedId = String(d.id).padStart(6, '0')
-        this.logger.info(`    L${d.depth} PJ${paddedId} — ${d.name} — ₹${d.total_purchases}`)
+        this.logger.info(`    L${d.depth} IG${paddedId} — ${d.name} — ₹${d.total_purchases}`)
       }
     }
 

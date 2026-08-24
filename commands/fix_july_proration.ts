@@ -68,7 +68,7 @@ export default class FixJulyProration extends BaseCommand {
       const oldGold = Number(dist.goldAmount)
 
       this.logger.info(
-        `FIXING PJ${String(dist.userId).padStart(6, '0')} inv#${dist.investmentId}: ` +
+        `FIXING IG${String(dist.userId).padStart(6, '0')} inv#${dist.investmentId}: ` +
           `${activeDays}/${daysInMonth} days — return ${dist.returnAmount} → ${expectedReturn}, ` +
           `income ${oldIncome} → ${expectedIncome}, gold ${oldGold} → ${expectedGold}`
       )

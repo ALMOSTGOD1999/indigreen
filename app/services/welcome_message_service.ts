@@ -13,7 +13,7 @@ export default class WelcomeMessageService {
       return
     }
 
-    const formattedId = `PJ${String(userId).padStart(6, '0')}`
+    const formattedId = `IG${String(userId).padStart(6, '0')}`
     const appUrl = env.get('APP_URL', 'https://primejewellery.live')
 
     try {

@@ -6,7 +6,7 @@ import hash from '@adonisjs/core/services/hash'
 
 export default class CreateTestUsers extends BaseCommand {
   static commandName = 'create:test-users'
-  static description = 'Create 4 test users between PJ997860 and PJ248892'
+  static description = 'Create 4 test users between IG997860 and IG248892'
 
   static options: CommandOptions = {
     startApp: true,
@@ -55,12 +55,12 @@ export default class CreateTestUsers extends BaseCommand {
     this.logger.info('EXISTING USERS:')
     for (const u of existing) {
       this.logger.info(
-        `  PJ${u.id} ${u.name} parent:${u.parent_id ? 'PJ' + u.parent_id : 'none'} ${u.status}`
+        `  IG${u.id} ${u.name} parent:${u.parent_id ? 'IG' + u.parent_id : 'none'} ${u.status}`
       )
     }
 
     if (existing.length < 2) {
-      this.logger.error('One or both anchor users (PJ997860, PJ248892) not found!')
+      this.logger.error('One or both anchor users (IG997860, IG248892) not found!')
       return
     }
 
@@ -70,7 +70,7 @@ export default class CreateTestUsers extends BaseCommand {
     for (const u of users) {
       const exists = await db.from('users').where('id', u.id).first()
       if (exists) {
-        this.logger.info(`  PJ${u.id} ${u.name} ALREADY EXISTS - skipping`)
+        this.logger.info(`  IG${u.id} ${u.name} ALREADY EXISTS - skipping`)
         continue
       }
 
@@ -97,18 +97,18 @@ export default class CreateTestUsers extends BaseCommand {
         updated_at: now.toISO(),
       })
 
-      this.logger.success(`  Created PJ${u.id} ${u.name} (parent: PJ${u.parentId})`)
+      this.logger.success(`  Created IG${u.id} ${u.name} (parent: IG${u.parentId})`)
     }
 
-    // Step 3: Move PJ248892 to be child of Test id new 4
+    // Step 3: Move IG248892 to be child of Test id new 4
     const current248892 = await db.from('users').where('id', 248892).select('parent_id').first()
     this.logger.info('')
-    this.logger.info('MOVING PJ248892:')
+    this.logger.info('MOVING IG248892:')
     this.logger.info(
-      `  Current parent: ${current248892?.parent_id ? 'PJ' + current248892.parent_id : 'none'}`
+      `  Current parent: ${current248892?.parent_id ? 'IG' + current248892.parent_id : 'none'}`
     )
     await db.from('users').where('id', 248892).update({ parent_id: 997864 })
-    this.logger.success('  New parent: PJ997864 (Test id new 4)')
+    this.logger.success('  New parent: IG997864 (Test id new 4)')
 
     // Step 4: Verify
     this.logger.info('')
@@ -121,12 +121,12 @@ export default class CreateTestUsers extends BaseCommand {
 
     for (const u of chain) {
       this.logger.info(
-        `  PJ${u.id} ${u.name} parent:${u.parent_id ? 'PJ' + u.parent_id : 'root'} ${u.status}`
+        `  IG${u.id} ${u.name} parent:${u.parent_id ? 'IG' + u.parent_id : 'root'} ${u.status}`
       )
     }
 
     this.logger.info('')
     this.logger.success('DONE! Password for all new users: password')
-    this.logger.info('Login: PJ997861 / password, PJ997862 / password, etc.')
+    this.logger.info('Login: IG997861 / password, IG997862 / password, etc.')
   }
 }

@@ -62,14 +62,14 @@ export default class CleanupJuneSalaries extends BaseCommand {
         valid++
         totalRewardKept += matchedRank?.reward || 0
         this.logger.info(
-          `KEEP  PJ${String(s.user_id).padStart(6, '0')}: power=₹${power.toLocaleString('en-IN')} weaker=₹${weaker.toLocaleString('en-IN')} total=₹${total.toLocaleString('en-IN')} → ${matchedRank?.designation}`
+          `KEEP  IG${String(s.user_id).padStart(6, '0')}: power=₹${power.toLocaleString('en-IN')} weaker=₹${weaker.toLocaleString('en-IN')} total=₹${total.toLocaleString('en-IN')} → ${matchedRank?.designation}`
         )
       } else {
         invalid++
         toDelete.push(s.id)
         totalRewardDeleted += total
         this.logger.warning(
-          `DELETE PJ${String(s.user_id).padStart(6, '0')}: power=₹${power.toLocaleString('en-IN')} weaker=₹${weaker.toLocaleString('en-IN')} total=₹${total.toLocaleString('en-IN')} → NO VALID SLAB`
+          `DELETE IG${String(s.user_id).padStart(6, '0')}: power=₹${power.toLocaleString('en-IN')} weaker=₹${weaker.toLocaleString('en-IN')} total=₹${total.toLocaleString('en-IN')} → NO VALID SLAB`
         )
       }
     }

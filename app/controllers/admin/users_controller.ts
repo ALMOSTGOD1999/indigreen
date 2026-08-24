@@ -97,7 +97,7 @@ export default class AdminUsersController {
 
     let parentId: number | null = null
     if (data.parentId) {
-      // Strip PJ prefix
+      // Strip IG prefix
       const cleanId = String(data.parentId).replace(/^[a-zA-Z]+/i, '')
       parentId = Number(cleanId)
       const parent = await User.find(parentId)
@@ -299,7 +299,7 @@ export default class AdminUsersController {
    */
   async lookup({ params, response }: HttpContext) {
     const rawId = String(params.id)
-    // Strip prefix (e.g. PJ000135 → 000135)
+    // Strip prefix (e.g. IG000135 → 000135)
     const cleanId = rawId.replace(/^[a-zA-Z]+/i, '')
     const userId = Number(cleanId)
     if (!userId) {

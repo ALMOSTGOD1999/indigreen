@@ -60,7 +60,7 @@ export default class CheckDatesFull extends BaseCommand {
 
     for (const row of rows) {
       const memberCode = row[header.indexOf('member_code')] || ''
-      const match = memberCode.match(/PJ(\d+)/i)
+      const match = memberCode.match(/IG(\d+)/i)
       if (!match) continue
       const userId = Number(match[1])
 

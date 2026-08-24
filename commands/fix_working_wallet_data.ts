@@ -44,12 +44,12 @@ export default class FixWorkingWalletData extends BaseCommand {
         safeToFix++
         totalMoved += workingIncome
         this.logger.info(
-          `[SAFE] PJ${String(id).padStart(6, '0')} ${name}: move ₹${workingIncome.toFixed(2)} from wallet_balance to working_wallet`
+          `[SAFE] IG${String(id).padStart(6, '0')} ${name}: move ₹${workingIncome.toFixed(2)} from wallet_balance to working_wallet`
         )
       } else {
         needsReview++
         this.logger.warning(
-          `[REVIEW] PJ${String(id).padStart(6, '0')} ${name}: wallet_balance ₹${walletBalance.toFixed(2)} < working income ₹${workingIncome.toFixed(2)} — may have spent part of it`
+          `[REVIEW] IG${String(id).padStart(6, '0')} ${name}: wallet_balance ₹${walletBalance.toFixed(2)} < working income ₹${workingIncome.toFixed(2)} — may have spent part of it`
         )
       }
     }
@@ -79,7 +79,7 @@ export default class FixWorkingWalletData extends BaseCommand {
         )
         fixed++
         this.logger.success(
-          `Fixed PJ${String(id).padStart(6, '0')}: moved ₹${workingIncome.toFixed(2)}`
+          `Fixed IG${String(id).padStart(6, '0')}: moved ₹${workingIncome.toFixed(2)}`
         )
       }
     }

@@ -43,7 +43,7 @@ export default class ReconcileWorkingWallet extends BaseCommand {
         fixed++
         totalMoved += Math.abs(diff)
         this.logger.warning(
-          `PJ${String(uid).padStart(6, '0')} ${u.name}: DB=₹${dbValue.toFixed(2)} Snapshot=₹${snapshotTotal.toFixed(2)} Δ=₹${diff.toFixed(2)}`
+          `IG${String(uid).padStart(6, '0')} ${u.name}: DB=₹${dbValue.toFixed(2)} Snapshot=₹${snapshotTotal.toFixed(2)} Δ=₹${diff.toFixed(2)}`
         )
 
         if (!dryRun) {

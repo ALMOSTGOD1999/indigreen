@@ -71,7 +71,7 @@ export default class CheckDates extends BaseCommand {
 
     for (const row of rows) {
       const memberCode = row[header.indexOf('member_code')] || ''
-      const match = memberCode.match(/PJ(\d+)/i)
+      const match = memberCode.match(/IG(\d+)/i)
       if (!match) continue
       const userId = Number(match[1])
 
@@ -156,7 +156,7 @@ export default class CheckDates extends BaseCommand {
 
     // Print first 20 mismatches
     for (const m of mismatches.slice(0, 20)) {
-      this.logger.info(`\nPJ${String(m.id).padStart(6, '0')} ${m.name}`)
+      this.logger.info(`\nIG${String(m.id).padStart(6, '0')} ${m.name}`)
       if (m.activationDiff) {
         this.logger.info(
           `  ACTIVATION: CSV=${m.csvActivated}, DB=${m.dbActivated}, diff=${m.activationDiffDays.toFixed(1)}d`

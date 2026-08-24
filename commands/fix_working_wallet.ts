@@ -29,7 +29,7 @@ export default class FixWorkingWallet extends BaseCommand {
 
     this.logger.info(`Found ${affected.rows.length} affected users`)
     for (const r of affected.rows) {
-      this.logger.info(`PJ${String(r.id).padStart(6, '0')} ${r.name}: wallet_balance=₹${r.wallet_balance}, working_wallet=₹${r.working_wallet}, tx=₹${r.amount} — ${r.remark}`)
+      this.logger.info(`IG${String(r.id).padStart(6, '0')} ${r.name}: wallet_balance=₹${r.wallet_balance}, working_wallet=₹${r.working_wallet}, tx=₹${r.amount} — ${r.remark}`)
     }
 
     if (affected.rows.length === 0) {
@@ -37,16 +37,16 @@ export default class FixWorkingWallet extends BaseCommand {
       return
     }
 
-    // Check if the user wants to fix PJ585222 specifically
+    // Check if the user wants to fix IG585222 specifically
     this.logger.info('')
-    this.logger.info('Checking PJ585222 specifically...')
+    this.logger.info('Checking IG585222 specifically...')
     const pj585222 = await db.rawQuery(`
       SELECT id, name, wallet_balance, working_wallet, repurchase_wallet
       FROM users WHERE id = 585222
     `)
     if (pj585222.rows.length > 0) {
       const u = pj585222.rows[0]
-      this.logger.info(`PJ585222: wallet_balance=₹${u.wallet_balance}, working_wallet=₹${u.working_wallet}, repurchase_wallet=₹${u.repurchase_wallet}`)
+      this.logger.info(`IG585222: wallet_balance=₹${u.wallet_balance}, working_wallet=₹${u.working_wallet}, repurchase_wallet=₹${u.repurchase_wallet}`)
     }
   }
 }

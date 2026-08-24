@@ -29,7 +29,7 @@ export function InviteSection({ userId }: { userId: number }) {
             type="text"
             value={refId}
             onChange={(e) => setRefId(e.target.value)}
-            placeholder="PJ123456"
+            placeholder="IG123456"
           />
         </div>
 

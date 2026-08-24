@@ -4,11 +4,11 @@ import db from '@adonisjs/lucid/services/db'
 
 export default class CheckPurchaseDate extends BaseCommand {
   static commandName = 'check:purchase-date'
-  static description = 'Check purchase dates for PJ630351 downline'
+  static description = 'Check purchase dates for IG630351 downline'
   static options: CommandOptions = { startApp: true }
 
   async run() {
-    // Query all descendants of PJ630351
+    // Query all descendants of IG630351
     const descendants = await db.rawQuery(
       `WITH RECURSIVE descendants AS (
         SELECT id, name, parent_id, 1 as depth
@@ -54,7 +54,7 @@ export default class CheckPurchaseDate extends BaseCommand {
     this.logger.info(`Found ${purchases.rows.length} purchase records`)
     for (const r of purchases.rows) {
       this.logger.info(
-        `User PJ${String(r.user_id).padStart(6, '0')} (${r.name}) — Amount: ₹${r.amount} — Approved: ${r.approved_at} — Created: ${r.created_at}`
+        `User IG${String(r.user_id).padStart(6, '0')} (${r.name}) — Amount: ₹${r.amount} — Approved: ${r.approved_at} — Created: ${r.created_at}`
       )
     }
 
@@ -62,22 +62,22 @@ export default class CheckPurchaseDate extends BaseCommand {
     this.logger.info('')
     this.logger.info('=== Checking the source of the 2026-06-17 start date ===')
 
-    // Check user PJ932914 specifically (direct child with 401000 purchase)
+    // Check user IG932914 specifically (direct child with 401000 purchase)
     const user932914 = await db.rawQuery(
       `SELECT id, name, created_at, activated_at FROM users WHERE id = 932914`
     )
     if (user932914.rows.length > 0) {
       const u = user932914.rows[0]
-      this.logger.info(`PJ932914: created_at=${u.created_at}, activated_at=${u.activated_at}`)
+      this.logger.info(`IG932914: created_at=${u.created_at}, activated_at=${u.activated_at}`)
     }
 
-    // Check purchase for PJ932914
+    // Check purchase for IG932914
     const purchase932914 = await db.rawQuery(
       `SELECT * FROM purchases WHERE user_id = 932914 ORDER BY approved_at ASC`
     )
     for (const r of purchase932914.rows) {
       this.logger.info(
-        `Purchase for PJ932914: id=${r.id}, amount=${r.amount}, approved_at=${r.approved_at}, created_at=${r.created_at}`
+        `Purchase for IG932914: id=${r.id}, amount=${r.amount}, approved_at=${r.approved_at}, created_at=${r.created_at}`
       )
     }
   }

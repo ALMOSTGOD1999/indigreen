@@ -24,15 +24,15 @@ export default class ShowDateDetails extends BaseCommand {
       this.logger.info(`\n=== ${type} (${items.length}) ===`)
       for (const m of items) {
         if (type === 'activation_state') {
-          this.logger.info(`PJ${String(m.id).padStart(6, '0')} ${m.name}: CSV_activated=${m.csvIsActivated}, DB_activated=${m.dbIsActivated}, CSV_created=${m.csvCreated}, DB_activated_at=${m.dbActivated}`)
+          this.logger.info(`IG${String(m.id).padStart(6, '0')} ${m.name}: CSV_activated=${m.csvIsActivated}, DB_activated=${m.dbIsActivated}, CSV_created=${m.csvCreated}, DB_activated_at=${m.dbActivated}`)
         } else if (type === 'db_purchase_no_csv') {
-          this.logger.info(`PJ${String(m.id).padStart(6, '0')} ${m.name}: DB_purchase=${m.dbGoldPurchase}, DB_amount=${m.dbAmount}, CSV_total_purchase=${m.csvTotalPurchase}`)
+          this.logger.info(`IG${String(m.id).padStart(6, '0')} ${m.name}: DB_purchase=${m.dbGoldPurchase}, DB_amount=${m.dbAmount}, CSV_total_purchase=${m.csvTotalPurchase}`)
         } else if (type === 'csv_purchase_no_db') {
-          this.logger.info(`PJ${String(m.id).padStart(6, '0')} ${m.name}: CSV_gold_date=${m.csvGoldPurchase}, CSV_amount=${m.csvTotalPurchase}`)
+          this.logger.info(`IG${String(m.id).padStart(6, '0')} ${m.name}: CSV_gold_date=${m.csvGoldPurchase}, CSV_amount=${m.csvTotalPurchase}`)
         } else if (type === 'purchase_date') {
-          this.logger.info(`PJ${String(m.id).padStart(6, '0')} ${m.name}: CSV=${m.csvGoldPurchase}, DB=${m.dbGoldPurchase}, diff=${m.diffDays.toFixed(1)}d, CSV_amt=${m.csvAmount}, DB_amt=${m.dbAmount}`)
+          this.logger.info(`IG${String(m.id).padStart(6, '0')} ${m.name}: CSV=${m.csvGoldPurchase}, DB=${m.dbGoldPurchase}, diff=${m.diffDays.toFixed(1)}d, CSV_amt=${m.csvAmount}, DB_amt=${m.dbAmount}`)
         } else if (type === 'activation_date') {
-          this.logger.info(`PJ${String(m.id).padStart(6, '0')} ${m.name}: CSV_created=${m.csvCreated}, DB_activated=${m.dbActivated}, diff=${m.diffDays.toFixed(1)}d`)
+          this.logger.info(`IG${String(m.id).padStart(6, '0')} ${m.name}: CSV_created=${m.csvCreated}, DB_activated=${m.dbActivated}, diff=${m.diffDays.toFixed(1)}d`)
         }
       }
     }

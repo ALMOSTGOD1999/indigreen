@@ -17,8 +17,8 @@ const rows = await db.from('users').whereIn('id', [997860, 248892]).select('id',
 console.log('EXISTING USERS:')
 console.log(JSON.stringify(rows, null, 2))
 
-// Also check who PJ248892's current parent is
+// Also check who IG248892's current parent is
 const parent = await db.from('users').where('id', rows[0]?.parent_id || 0).select('id', 'name').first()
-console.log('\nPJ248892 parent:', JSON.stringify(parent, null, 2))
+console.log('\nIG248892 parent:', JSON.stringify(parent, null, 2))
 
 process.exit(0)

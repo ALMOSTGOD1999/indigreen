@@ -11,13 +11,13 @@ export default class CheckSlabEligibility extends BaseCommand {
 
   @args.string({
     required: false,
-    description: 'User ID (e.g. 416427 or PJ416427)',
+    description: 'User ID (e.g. 416427 or IG416427)',
   })
   declare userId: string
 
   async run() {
     const rawInput = (this.userId || '').trim().toUpperCase()
-    const userId = rawInput.replace(/^PJ/i, '')
+    const userId = rawInput.replace(/^IG/i, '')
 
     if (!userId) {
       this.logger.error('Please provide a user ID. Example: node ace check:slab-eligibility 416427')
@@ -30,7 +30,7 @@ export default class CheckSlabEligibility extends BaseCommand {
 
     const userRes = await db.rawQuery(`SELECT id, name FROM users WHERE id = ?`, [uid])
     if (userRes.rows.length === 0) {
-      this.logger.error(`User PJ${String(uid).padStart(6, '0')} not found`)
+      this.logger.error(`User IG${String(uid).padStart(6, '0')} not found`)
       return
     }
     const user = userRes.rows[0]
@@ -39,7 +39,7 @@ export default class CheckSlabEligibility extends BaseCommand {
 
     this.logger.info(`══════════════════════════════════════════════════`)
     this.logger.info(`  SLAB ELIGIBILITY CHECK`)
-    this.logger.info(`  User: PJ${String(uid).padStart(6, '0')} ${user.name}`)
+    this.logger.info(`  User: IG${String(uid).padStart(6, '0')} ${user.name}`)
     this.logger.info(`  Month: June 2026`)
     this.logger.info(`══════════════════════════════════════════════════`)
 
@@ -79,7 +79,7 @@ export default class CheckSlabEligibility extends BaseCommand {
     for (const [i, leg] of legs.entries()) {
       const label = i === 0 ? 'POWER' : `Leg ${i + 1}`
       this.logger.info(
-        `  ${label}: ₹${leg.volume.toLocaleString('en-IN')} (PJ${String(leg.legId).padStart(6, '0')})`
+        `  ${label}: ₹${leg.volume.toLocaleString('en-IN')} (IG${String(leg.legId).padStart(6, '0')})`
       )
     }
     this.logger.info(`  ────────────────────────────────────`)

@@ -14,7 +14,7 @@ export default class ShowJson extends BaseCommand {
     this.logger.info(`Total mismatches: ${data.length}`)
     for (const m of data) {
       const lines = []
-      lines.push(`\nPJ${String(m.id).padStart(6, '0')} ${m.name}`)
+      lines.push(`\nIG${String(m.id).padStart(6, '0')} ${m.name}`)
       if (m.activationDiff) {
         lines.push(`  ACTIVATION: CSV=${m.csvActivated}, DB=${m.dbActivated}, CSV_activated=${m.csvIsActivated}, DB_activated=${m.dbIsActivated}, diffDays=${m.activationDiffDays}`)
       }
