@@ -12,6 +12,7 @@ const navigation = [
   { name: 'Silver', href: '/products?category=silver' },
   { name: 'Invest', href: '/investments' },
   { name: 'About', href: '/about' },
+  { name: 'Legal', href: '/legal' },
 ]
 
 const Header = () => {

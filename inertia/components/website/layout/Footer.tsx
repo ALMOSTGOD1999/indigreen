@@ -81,6 +81,7 @@ const Footer = () => {
                 { name: 'FAQs', href: '/faqs' },
                 { name: 'Shipping & Returns', href: '/shipping' },
                 { name: 'Privacy Policy', href: '/privacy' },
+                { name: 'Legal', href: '/legal' },
               ].map((item) => (
                 <li key={item.name}>
                   <Link

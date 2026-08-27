@@ -531,6 +531,11 @@ router
       .as('products.show')
     router.on('/about').renderInertia('website/AboutUs').as('about')
     router.on('/mission').renderInertia('website/MissionVision').as('mission')
+    router.get('/legal', ({ inertia }) => {
+      return inertia.render('website/Legal', {
+        documents: [],
+      })
+    }).as('legal')
   })
   .use(middleware.silentAuth())
 
