@@ -533,7 +533,20 @@ router
     router.on('/mission').renderInertia('website/MissionVision').as('mission')
     router.get('/legal', ({ inertia }) => {
       return inertia.render('website/Legal', {
-        documents: [],
+        documents: [
+          {
+            title: 'TAN Certificate',
+            image: '/legal/tan-certificate.png',
+          },
+          {
+            title: 'Certificate of Incorporation',
+            image: '/legal/incorporation-certificate.png',
+          },
+          {
+            title: 'e-PAN Card',
+            image: '/legal/pan-card.png',
+          },
+        ],
       })
     }).as('legal')
   })
