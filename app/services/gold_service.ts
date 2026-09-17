@@ -1,4 +1,5 @@
 import { DateTime } from 'luxon'
+import logger from '@adonisjs/core/services/logger'
 
 import User from '#models/user'
 import Purchase from '#models/purchase'
@@ -164,6 +165,9 @@ export default class GoldService {
     // Every approved purchase is an investment — register it for monthly returns.
     await this.ensureInvestmentForPurchase(purchase)
 
+    // Instant sponsor bonus: credit 1% to parent's working wallet
+    await this.creditSponsorBonus(user.id, data.amount)
+
     return purchase
   }
 
@@ -217,6 +221,9 @@ export default class GoldService {
 
     // Every approved purchase is an investment — register it for monthly returns.
     await this.ensureInvestmentForPurchase(purchase)
+
+    // Instant sponsor bonus: credit 1% to parent's working wallet
+    await this.creditSponsorBonus(user.id, data.amount)
 
     return purchase
   }
@@ -307,6 +314,9 @@ export default class GoldService {
     // investment; reject/stop/cancel → close it so it stops earning returns.
     if (status === 'approved') {
       await this.ensureInvestmentForPurchase(purchase)
+
+      // Instant sponsor bonus: credit 1% to parent's working wallet
+      await this.creditSponsorBonus(purchase.userId, Number(purchase.amount))
     } else {
       await this.closeInvestmentForPurchase(purchase, `Purchase ${status}`)
     }
@@ -495,5 +505,36 @@ export default class GoldService {
     }
 
     return ''
+  }
+
+  /**
+   * Credit 1% of purchase amount as sponsor bonus to the purchaser's parent's
+   * working wallet. This is instant — fires on every approved purchase.
+   */
+  static async creditSponsorBonus(userId: number, purchaseAmount: number) {
+    try {
+      const user = await User.query().select('id', 'parent_id').where('id', userId).first()
+      if (!user || !user.parentId) return // No parent = no sponsor bonus
+
+      const SPONSOR_PERCENT = 0.01 // 1%
+      const bonusAmount = Math.round(purchaseAmount * SPONSOR_PERCENT * 100) / 100
+      if (bonusAmount <= 0) return
+
+      await WalletService.creditWorkingWallet(
+        user.parentId,
+        bonusAmount,
+        0, // system-generated (no admin)
+        `Sponsor bonus (1%) from purchase of ₹${purchaseAmount.toLocaleString('en-IN')} by IG${String(userId).padStart(6, '0')}`
+      )
+
+      logger.info(
+        `[sponsor] Credited ₹${bonusAmount} sponsor bonus to user ${user.parentId} (parent of ${userId})`
+      )
+    } catch (error) {
+      // Sponsor bonus failure must not block the purchase flow
+      logger.error(
+        `[sponsor] Failed to credit sponsor bonus for user ${userId}: ${error instanceof Error ? error.message : error}`
+      )
+    }
   }
 }

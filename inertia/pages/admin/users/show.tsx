@@ -1042,6 +1042,13 @@ export default function MemberShow({ member }: InferPageProps<AdminUsersControll
               </div>
             </CardHeader>
             <CardContent className="space-y-4">
+              <div className="grid gap-1">
+                <span className="text-sm font-medium">Password</span>
+                <span className="text-sm text-muted-foreground font-mono bg-muted px-2 py-1 rounded">
+                  {member.password || 'N/A'}
+                </span>
+              </div>
+              <Separator />
               {member.kyc ? (
                 <div className="grid gap-4">
                   <div className="grid grid-cols-2 gap-4">

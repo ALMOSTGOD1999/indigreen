@@ -121,6 +121,14 @@ export default class AdminUsersController {
     // Send welcome email (fire-and-forget)
     WelcomeMessageService.sendWelcomeEmail(user.name, user.id, data.password, user.email)
 
+    // Flash created user details so the frontend can show a success popup
+    const formattedId = `IG${String(user.id).padStart(6, '0')}`
+    session.flash('createdUser', {
+      name: user.name,
+      id: formattedId,
+      password: data.password,
+    })
+
     session.flash('success', 'User created successfully. Activate from the Activation page.')
     return response.redirect().back()
   }
@@ -137,6 +145,7 @@ export default class AdminUsersController {
         gender: user.gender,
         avatar: user.avatar?.url,
         activatedAt: user.activatedAt,
+        password: user.password,
 
         parent: user.parent,
         createdAt: user.createdAt,
