@@ -6,7 +6,7 @@ import { DateTime } from 'luxon'
 import DailyBonusService from '#services/daily_bonus_service'
 import env from '#start/env'
 
-@schedule((s) => s.timezone(env.get('TZ')).dailyAt('00:10'))
+@schedule((s) => s.timezone(process.env.TZ || 'Asia/Kolkata').dailyAt('00:10'))
 export default class CreditDailyBonuses extends BaseCommand {
   static commandName = 'bonuses:credit-daily'
   static description =

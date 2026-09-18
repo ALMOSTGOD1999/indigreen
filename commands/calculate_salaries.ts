@@ -11,7 +11,7 @@ import router from '@adonisjs/core/services/router'
 
 // @schedule((s) => s.everySecond()) // this is for testing the scheduler
 // Run once a month: last day at 23:59
-@schedule((s) => s.timezone(env.get('TZ')).lastDayOfMonth('23:59'))
+@schedule((s) => s.timezone(process.env.TZ || 'Asia/Kolkata').lastDayOfMonth('23:59'))
 export default class CalculateSalaries extends BaseCommand {
   static commandName = 'calculate:salaries'
   static description = 'Calculate performance incentive once a month (end of month)'

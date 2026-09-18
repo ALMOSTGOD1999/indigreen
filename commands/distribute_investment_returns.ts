@@ -6,7 +6,7 @@ import { DateTime } from 'luxon'
 import InvestmentService from '#services/investment_service'
 import env from '#start/env'
 
-@schedule((s) => s.timezone(env.get('TZ')).monthlyOn(1, '00:05'))
+@schedule((s) => s.timezone(process.env.TZ || 'Asia/Kolkata').monthlyOn(1, '00:05'))
 export default class DistributeInvestmentReturns extends BaseCommand {
   static commandName = 'investments:distribute-returns'
   static description =
