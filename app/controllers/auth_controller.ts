@@ -41,15 +41,15 @@ export default class AuthController {
 
     await this.authenticate(ctx, user)
 
-    // Store signup details in session for the success page
-    ctx.session.put('signupSuccess', {
+    // Flash signup success details so dashboard can show credentials
+    ctx.session.flash('signupSuccess', {
       name: user.name,
       id: user.id,
       formattedId: `IG${String(user.id).padStart(6, '0')}`,
       password: password,
     })
 
-    return ctx.response.redirect().toRoute('auth.signup.success')
+    return ctx.response.redirect().toRoute('dashboard.index')
   }
 
   async login(ctx: HttpContext) {

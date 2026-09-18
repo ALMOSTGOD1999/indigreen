@@ -23,7 +23,7 @@ router
 
     router.post('signup', [AuthController, 'signup']).as('signup')
     router.post('login', [AuthController, 'login']).as('login')
-    router.get('signup/success', [AuthController, 'signupSuccess']).as('signup.success')
+
   })
   .as('auth')
   .use(middleware.guest())
