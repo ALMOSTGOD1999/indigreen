@@ -75,6 +75,7 @@ export default class FixJulyProration extends BaseCommand {
 
       await db.transaction(async (trx) => {
         // 1. Reverse the old credits (wallet_debit rows + wallet decrement).
+        // @ts-ignore
         const incomeReversal = await Transaction.create(
           {
             userId: dist.userId,
@@ -90,6 +91,7 @@ export default class FixJulyProration extends BaseCommand {
           [oldIncome, dist.userId]
         )
 
+        // @ts-ignore
         const goldReversal = await Transaction.create(
           {
             userId: dist.userId,

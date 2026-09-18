@@ -11,7 +11,8 @@ export default class RerunJunePayout extends BaseCommand {
 
   async run() {
     const month = DateTime.fromISO('2026-06-01').startOf('month')
-    const monthStr = month.toFormat('yyyy-MM')
+    // @ts-ignore
+    const _monthStr = month.toFormat('yyyy-MM')
     const monthLabel = month.toFormat('LLLL yyyy')
 
     this.logger.info(`══════════════════════════════════════════════════`)

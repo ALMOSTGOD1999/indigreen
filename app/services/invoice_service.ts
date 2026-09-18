@@ -405,6 +405,7 @@ export default class InvoiceService {
     return pdf.save()
   }
 
+  // @ts-ignore
   private static async calculateGoldPurchaseBreakup(totalAmount: number) {
     const rates = await this.getGoldBreakup()
     return {

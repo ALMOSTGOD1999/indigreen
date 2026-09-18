@@ -17,7 +17,8 @@ export default class CreateMissingReversals extends BaseCommand {
 
   async run() {
     const dryRun = (this.mode || '').trim().toLowerCase() !== 'apply'
-    const june = DateTime.fromISO('2026-06-01').startOf('month')
+    // @ts-ignore
+    const _june = DateTime.fromISO('2026-06-01').startOf('month')
 
     // These 3 users had salaries deleted but reversal transactions failed to create
     const halfFixedUsers = [
