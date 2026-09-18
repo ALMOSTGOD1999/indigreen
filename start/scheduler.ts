@@ -7,4 +7,4 @@ app.terminating(async () => {
   await worker.stop()
 })
 
-await worker.start()
+// await worker.start()
