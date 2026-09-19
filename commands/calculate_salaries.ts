@@ -1,17 +1,12 @@
 import { BaseCommand, args } from '@adonisjs/core/ace'
 import type { CommandOptions } from '@adonisjs/core/types/ace'
-import { schedule } from 'adonisjs-scheduler'
 import { DateTime } from 'luxon'
 
 import { UserRoleEnum } from '#enums/user'
 import User from '#models/user'
 import RewardService from '#services/reward_service'
 import env from '#start/env'
-import router from '@adonisjs/core/services/router'
 
-// @schedule((s) => s.everySecond()) // this is for testing the scheduler
-// Run once a month: last day at 23:59
-@schedule((s) => s.timezone(process.env.TZ || 'Asia/Kolkata').lastDayOfMonth('23:59'))
 export default class CalculateSalaries extends BaseCommand {
   static commandName = 'calculate:salaries'
   static description = 'Calculate performance incentive once a month (end of month)'
@@ -21,6 +16,9 @@ export default class CalculateSalaries extends BaseCommand {
   declare month?: string
 
   async run() {
+    const router = await import('@adonisjs/core/services/router')
+    const { default: routerModule } = router as any
+
     const targetMonth = this.month
       ? DateTime.fromISO(this.month + '-01').startOf('month')
       : DateTime.now().setZone(env.get('TZ')).startOf('month')
@@ -29,7 +27,7 @@ export default class CalculateSalaries extends BaseCommand {
       `Starting performance incentive calculation for ${targetMonth.toFormat('yyyy-MM')}...`
     )
 
-    router.commit()
+    routerModule.commit()
 
     const users = await User.query()
       .whereNotNull('activatedAt')

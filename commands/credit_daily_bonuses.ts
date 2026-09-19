@@ -1,12 +1,10 @@
 import { BaseCommand } from '@adonisjs/core/ace'
 import type { CommandOptions } from '@adonisjs/core/types/ace'
-import { schedule } from 'adonisjs-scheduler'
 import { DateTime } from 'luxon'
 
 import DailyBonusService from '#services/daily_bonus_service'
 import env from '#start/env'
 
-@schedule((s) => s.timezone(process.env.TZ || 'Asia/Kolkata').dailyAt('00:10'))
 export default class CreditDailyBonuses extends BaseCommand {
   static commandName = 'bonuses:credit-daily'
   static description =
