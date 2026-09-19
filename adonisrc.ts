@@ -30,9 +30,7 @@ export default defineConfig({
     () => import('@adonisjs/lucid/commands'),
     () => import('@izzyjs/route/commands'),
     () => import('@jrmc/adonis-attachment/commands'),
-    () => import('adonisjs-scheduler/commands'),
     () => import('@adonisjs/cache/commands'),
-    () => import('adonis-resque/commands'),
   ],
 
   /*
@@ -64,13 +62,8 @@ export default defineConfig({
     () => import('@izzyjs/route/izzy_provider'),
     () => import('@adonisjs/drive/drive_provider'),
     () => import('@jrmc/adonis-attachment/attachment_provider'),
-    {
-      file: () => import('adonisjs-scheduler/scheduler_provider'),
-      environment: ['console', 'web'],
-    },
     () => import('@adonisjs/cache/cache_provider'),
     () => import('@adonisjs/redis/redis_provider'),
-    () => import('adonis-resque/providers/resque_provider'),
   ],
 
   /*
@@ -84,10 +77,6 @@ export default defineConfig({
   preloads: [
     () => import('#start/routes'),
     () => import('#start/kernel'),
-    {
-      file: () => import('#start/scheduler'),
-      environment: ['web'],
-    },
   ],
 
   /*

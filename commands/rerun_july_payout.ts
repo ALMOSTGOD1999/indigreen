@@ -6,7 +6,6 @@ import PayoutService from '#services/payout_service'
 import RewardService from '#services/reward_service'
 import { UserRoleEnum } from '#enums/user'
 import User from '#models/user'
-import router from '@adonisjs/core/services/router'
 
 /**
  * Re-run July 2026 payouts after revert, applying updated Level Income and
@@ -41,7 +40,8 @@ export default class RerunJulyPayout extends BaseCommand {
     // ─── Step 1: Calculate Salaries (Performance Incentive) ───
     this.logger.info('─── Step 1: Calculating Performance Incentive (Salaries) ───')
 
-    router.commit()
+    const { default: routerModule } = await import('@adonisjs/core/services/router')
+    routerModule.commit()
 
     const targetMonth = july
     const endDate = targetMonth.endOf('month')
