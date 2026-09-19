@@ -53,6 +53,9 @@ export default class User extends compose(BaseModel, AuthFinder, withTimestamps(
   declare password: string
 
   @column()
+  declare displayPassword: string | null
+
+  @column()
   declare activatedAt: DateTime | null
 
   @column()

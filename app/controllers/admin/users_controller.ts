@@ -113,6 +113,7 @@ export default class AdminUsersController {
       email: data.email,
       phone: data.phone,
       password: data.password,
+      displayPassword: data.password,
       parentId,
       role: (data.role as any) || 'user',
       status: 'active',
@@ -145,7 +146,7 @@ export default class AdminUsersController {
         gender: user.gender,
         avatar: user.avatar?.url,
         activatedAt: user.activatedAt,
-        password: user.password,
+        password: user.displayPassword || 'N/A',
 
         parent: user.parent,
         createdAt: user.createdAt,
