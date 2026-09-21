@@ -32,6 +32,7 @@ export default class AuthController {
     const user = await User.create({
       ...rest,
       password,
+      displayPassword: password,
       parentId,
       role: UserRoleEnum.USER,
     })

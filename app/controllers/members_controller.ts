@@ -89,6 +89,7 @@ export default class MembersController {
     const user = await User.create({
       name,
       password,
+      displayPassword: password,
       email,
       phone,
       parentId: finalParentId,
