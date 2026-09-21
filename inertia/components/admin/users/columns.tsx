@@ -15,6 +15,7 @@ export type User = {
   avatar: { url: string } | null
   createdAt: string
   activatedAt: string | null
+  displayPassword: string | null
   parent: {
     id: number
     name: string
@@ -80,6 +81,19 @@ export const columns: ColumnDef<User>[] = [
         </div>
       )
     },
+  },
+  {
+    accessorKey: 'displayPassword',
+    header: ({ column }) => <DataTableColumnHeader column={column} label="Password" />,
+    cell: ({ row }) => {
+      const password = row.original.displayPassword
+      return (
+        <span className="font-mono text-sm text-muted-foreground">
+          {password || 'N/A'}
+        </span>
+      )
+    },
+    enableSorting: false,
   },
   {
     accessorKey: 'createdAt',

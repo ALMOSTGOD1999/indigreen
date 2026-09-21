@@ -257,6 +257,7 @@ export default class UserService {
 
   static async updatePassword(user: User, password: string) {
     user.password = password
+    user.displayPassword = password
     await user.save()
   }
 

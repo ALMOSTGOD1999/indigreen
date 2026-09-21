@@ -52,6 +52,7 @@ export default class AdminUsersController {
           status: u.status ?? 'active',
           activatedAt: u.activatedAt,
           createdAt: u.createdAt,
+          displayPassword: u.displayPassword || null,
           parent: u.parent
             ? {
                 id: u.parent.id,
